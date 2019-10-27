@@ -18,6 +18,7 @@ from flask import Flask, request, jsonify
 from nltk.corpus import stopwords
 import requests
 import json
+import re
 
 # You will have to download the set of stop words the first time
 import nltk
