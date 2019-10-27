@@ -114,14 +114,18 @@ def lemma():
   lemmatizer = WordNetLemmatizer()
   try:
     request_data = request.get_json()
-    words = request_data['words']
+    sentences = request_data['sentences']
     product_id = request_data["product_id"]
     email = request_data["email"]
 
     succ, msg = check_licence_valid(product_id, email)
 
     if succ:
-      results = [lemmatizer.lemmatize(word.split(" ")[0].strip(), "v") for word in words]
+      results = []
+      for sentence in sentences:
+        clean_sentence = re.sub('\W+',' ', sentence)
+        results.append([lemmatizer.lemmatize(word.split(" ")[0].strip(), "v") for word in clean_sentence.split()])
+      # results = [lemmatizer.lemmatize(word.split(" ")[0].strip(), "v") for word in words]
     else:
       results = msg
 

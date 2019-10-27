@@ -71,7 +71,7 @@ def test_lemma():
     data ={
             "email": email,
             "product_id": product_id,
-            "words": [
+            "sentences": [
                 "dogs",
                 "reading"
             ]
